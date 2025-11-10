@@ -1,0 +1,184 @@
+#region VEXcode Generated Robot Configuration
+from vex import *
+import urandom
+import math
+
+# Brain should be defined by default
+brain=Brain()
+
+# Robot configuration code
+LeftFront = Motor(Ports.PORT11, GearSetting.RATIO_6_1, False)
+RightFront = Motor(Ports.PORT14, GearSetting.RATIO_6_1, True)
+RightBack_motor_a = Motor(Ports.PORT15, GearSetting.RATIO_6_1, False)
+RightBack_motor_b = Motor(Ports.PORT16, GearSetting.RATIO_6_1, False)
+RightBack = MotorGroup(RightBack_motor_a, RightBack_motor_b)
+LeftBack_motor_a = Motor(Ports.PORT12, GearSetting.RATIO_6_1, True)
+LeftBack_motor_b = Motor(Ports.PORT13, GearSetting.RATIO_6_1, True)
+LeftBack = MotorGroup(LeftBack_motor_a, LeftBack_motor_b)
+Intake = Motor(Ports.PORT20, GearSetting.RATIO_6_1, True)
+MediumIntake = Motor(Ports.PORT10, GearSetting.RATIO_18_1, False)
+StorageIntake = Motor(Ports.PORT9, GearSetting.RATIO_18_1, False)
+TongueMech = DigitalOut(brain.three_wire_port.a)
+Alighner = DigitalOut(brain.three_wire_port.b)
+Flap = DigitalOut(brain.three_wire_port.c)
+HoodDescore = DigitalOut(brain.three_wire_port.d)
+controller_1 = Controller(PRIMARY)
+
+
+# wait for rotation sensor to fully initialize
+wait(30, MSEC)
+
+
+# Make random actually random
+def initializeRandomSeed():
+    wait(100, MSEC)
+    random = brain.battery.voltage(MV) + brain.battery.current(CurrentUnits.AMP) * 100 + brain.timer.system_high_res()
+    urandom.seed(int(random))
+      
+# Set random seed 
+initializeRandomSeed()
+
+
+def play_vexcode_sound(sound_name):
+    # Helper to make playing sounds from the V5 in VEXcode easier and
+    # keeps the code cleaner by making it clear what is happening.
+    print("VEXPlaySound:" + sound_name)
+    wait(5, MSEC)
+
+# add a small delay to make sure we don't print in the middle of the REPL header
+wait(200, MSEC)
+# clear the console to make sure we don't have the REPL in the console
+print("\033[2J")
+
+#endregion VEXcode Generated Robot Configuration
+
+# ------------------------------------------
+# 
+# 	Project:      VEXcode Project
+#	Author:       VEX
+#	Created:
+#	Description:  VEXcode V5 Python Project
+# 
+# ------------------------------------------
+
+# Library imports
+from vex import *
+
+# Begin project code
+
+myVariable = 0
+
+def when_started1():
+    global myVariable
+    Intake.set_velocity(100,PERCENT)
+    Intake.set_max_torque(100,PERCENT)
+    MediumIntake.set_velocity(100,PERCENT)
+    MediumIntake.set_max_torque(100,PERCENT)
+    StorageIntake.set_velocity(100,PERCENT)
+    StorageIntake.set_max_torque(100,PERCENT)
+
+# LeftFrontLeftBackRightFrontRightBack
+
+def when_started2():
+    global myVariable
+    LeftFront.set_velocity(40,PERCENT)
+    LeftBack.set_velocity(40,PERCENT)
+    RightFront.set_velocity(40,PERCENT)
+    RightBack.set_velocity(40,PERCENT)
+    LeftFront.set_max_torque(50,PERCENT)
+    LeftBack.set_max_torque(50,PERCENT)
+    RightFront.set_max_torque(50,PERCENT)
+    RightBack.set_max_torque(50,PERCENT)
+    LeftFront.set_stopping(COAST)
+    LeftBack.set_stopping(COAST)
+    RightFront.set_stopping(COAST)
+    RightBack.set_stopping(COAST)
+#copy and paste the next few lines
+    LeftFront.spin_for(FORWARD,1780,DEGREES,wait=False)  
+    LeftBack.spin_for(FORWARD,1780,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,1780,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,1780,DEGREES,wait=True)
+#turn to match load
+    wait(0.6,SECONDS)
+    LeftFront.set_max_torque(100,PERCENT)
+    LeftBack.set_max_torque(100,PERCENT)
+    RightFront.set_max_torque(100,PERCENT)
+    RightBack.set_max_torque(100,PERCENT)
+    LeftFront.spin_for(REVERSE,480,DEGREES,wait=False)  
+    LeftBack.spin_for(REVERSE,480,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,480,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,480,DEGREES,wait=True)
+    TongueMech.set(True)
+    Intake.spin(FORWARD)
+    MediumIntake.spin(REVERSE)
+    LeftFront.set_max_torque(50,PERCENT)
+    LeftBack.set_max_torque(50,PERCENT)
+    RightFront.set_max_torque(50,PERCENT)
+    RightBack.set_max_torque(50,PERCENT)
+    wait(0.6,SECONDS)
+    LeftFront.set_velocity(31,PERCENT)
+    LeftBack.set_velocity(31,PERCENT)
+    RightFront.set_velocity(31,PERCENT)
+    RightBack.set_velocity(31,PERCENT)
+    LeftFront.spin_for(FORWARD,600,DEGREES,wait=False)  
+    LeftBack.spin_for(FORWARD,600,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,600,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,600,DEGREES,wait=False)
+    wait(1.15,SECONDS)
+    LeftFront.spin_for(REVERSE,571,DEGREES,wait=False)  
+    LeftBack.spin_for(REVERSE,571,DEGREES,wait=False)
+    RightFront.spin_for(REVERSE,571,DEGREES,wait=False)
+    RightBack.spin_for(REVERSE,571,DEGREES,wait=True)
+    wait(0.2,SECONDS) 
+    LeftFront.spin_for(FORWARD,200,DEGREES,wait=False) 
+    LeftBack.spin_for(FORWARD,200,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,200,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,200,DEGREES,wait=True)
+    wait(0.2,SECONDS)
+    LeftFront.spin_for(REVERSE,200,DEGREES,wait=False)  
+    LeftBack.spin_for(REVERSE,200,DEGREES,wait=False)
+    RightFront.spin_for(REVERSE,200,DEGREES,wait=False)
+    RightBack.spin_for(REVERSE,200,DEGREES,wait=True)
+    TongueMech.set(False)
+#180deg turn to the long goal
+    Alighner.set(True)
+    LeftFront.spin_for(REVERSE,1000,DEGREES,wait=False)  
+    LeftBack.spin_for(REVERSE,1000,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,1000,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,1000,DEGREES,wait=False)
+    Intake.spin(REVERSE)
+    wait(0.2,SECONDS)
+    Intake.spin(FORWARD)
+    wait(1.3,SECONDS)
+    Intake.stop()
+    LeftFront.set_velocity(30,PERCENT)
+    LeftBack.set_velocity(30,PERCENT)
+    RightFront.set_velocity(30,PERCENT)
+    RightBack.set_velocity(30,PERCENT)
+    LeftFront.set_max_torque(25,PERCENT)
+    LeftBack.set_max_torque(25,PERCENT)
+    RightFront.set_max_torque(25,PERCENT)
+    RightBack.set_max_torque(25,PERCENT)
+    LeftFront.spin_for(FORWARD,952,DEGREES,wait=False)  
+    LeftBack.spin_for(FORWARD,952,DEGREES,wait=False)
+    RightFront.spin_for(FORWARD,952,DEGREES,wait=False)
+    RightBack.spin_for(FORWARD,952,DEGREES,wait=False)
+#scoring in long goal
+#unjam
+    StorageIntake.stop()
+    MediumIntake.spin(REVERSE)
+    Intake.spin(REVERSE)
+    wait(0.3,SECONDS)
+    Intake.spin(FORWARD)
+    wait(0.2,SECONDS)
+    Intake.spin(REVERSE)
+    StorageIntake.spin(FORWARD)
+#scoring
+    Flap.set(True)
+    HoodDescore.set(True)
+    wait(0.2,SECONDS)
+    StorageIntake.spin(REVERSE)
+    Intake.spin(FORWARD)
+
+when_started1()
+when_started2()
