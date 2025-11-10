@@ -1,0 +1,14 @@
+Motors:
+LeftFront, port 11, forward, 600RPM
+RightFront, port 14, reverse, 600RPM
+RightBack, port 15 and 16, both forward, 600RPM
+LeftBack, port 12 and 13, both reverse, 600RPM
+Intake, port 20, reverse, 600RPM
+MediumIntake, port 10, forward, 200RPM
+StorageIntake, port 9, forward, 200RPM
+Digital outs:
+TongueMech, port A
+Alighner, port B
+Flap, port C
+HoodDescore, port D
+Controller, port 67
